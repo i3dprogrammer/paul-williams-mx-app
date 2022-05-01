@@ -73,6 +73,7 @@ def delete_member(configuration, user_guid, member_guid):
 
         try:
             api_instance.delete_member(member_guid, user_guid)
+            pprint(f"{user_guid}-{member_guid} deleted succesfully")
         except mx_platform_python.ApiException as e:
             print("Exception when calling MxPlatformApi->delete_member: %s\n" % e)
 
