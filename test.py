@@ -23,4 +23,4 @@ cf = actions.init(config.CLIENT_ID, config.API_KEY, config.HOST_DEV)
 # print("------------")
 # actions.list_institute_required_creds(cf, "chase")
 
-actions.create_member(cf, "USR-f43da74d-e24f-4a36-a1cf-96fcef718c92", "chase", "my-unique-id-test", '\"credentials_last_refreshed_at\": \"2015-10-15\"', 'CRD-27d0edb8-1d50-5b90-bcbc-be270ca42b9f', 'password')
+actions.create_member(cf, "USR-f43da74d-e24f-4a36-a1cf-96fcef718c92", "chase", "my-unique-id-test", '\"credentials_last_refreshed_at\": \"2015-10-15\"')
