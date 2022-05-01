@@ -13,6 +13,8 @@ actions.list_users(cf)
 # actions.list_members(cf, "USR-f43da74d-e24f-4a36-a1cf-96fcef718c92")
 
 # List transactions in last 24 hours.
-today = datetime.datetime.utcnow().strftime("%Y-%m-%d")
-yesterday = (datetime.datetime.utcnow() - datetime.timedelta(1)).strftime("%Y-%m-%d")
-actions.list_user_transactions(cf, "USR-f43da74d-e24f-4a36-a1cf-96fcef718c92", from_date=yesterday, to_date=today)
+# today = datetime.datetime.utcnow().strftime("%Y-%m-%d")
+# yesterday = (datetime.datetime.utcnow() - datetime.timedelta(1)).strftime("%Y-%m-%d")
+# actions.list_user_transactions(cf, "USR-f43da74d-e24f-4a36-a1cf-96fcef718c92", from_date=yesterday, to_date=today)
+
+actions.list_accounts(cf, "USR-f43da74d-e24f-4a36-a1cf-96fcef718c92")
