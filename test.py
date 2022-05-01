@@ -6,4 +6,7 @@ cf = actions.init(config.CLIENT_ID, config.API_KEY, config.HOST_DEV)
 # actions.create_user(cf, "email@provider.com", "my-unique-id", '{\"first_name\": \"Ahmed\", \"last_name\": \"Magdy\"}')
 
 # List users
-actions.list_users(cf)
+# actions.list_users(cf)
+
+# List transactions
+actions.list_user_transactions(cf, "USR-f43da74d-e24f-4a36-a1cf-96fcef718c92")
