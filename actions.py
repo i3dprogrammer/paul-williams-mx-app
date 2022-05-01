@@ -1,4 +1,5 @@
 from distutils.command.config import config
+from tkinter import INSIDE
 import mx_platform_python
 from mx_platform_python.api import mx_platform_api
 from mx_platform_python.models import *
@@ -25,6 +26,45 @@ def create_user(configuration, email, id, metadata, disabled = False):
         except mx_platform_python.ApiException as e:
             print("Exception when calling MxPlatformApi->create_user: %s\n" % e)
 
+def delete_user(configuration, user_guid):
+    with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
+        api_instance = mx_platform_api.MxPlatformApi(api_client)
+
+        try:
+            api_instance.delete_user(user_guid)
+            pprint(f"{user_guid} deleted succesfully")
+        except mx_platform_python.ApiException as e:
+            print("Exception when calling MxPlatformApi->delete_user: %s\n" % e)
+
+def create_member(configuration, user_guid, institute_code, id, metadata, cred_guid, cred_value):
+    with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
+        api_instance = mx_platform_api.MxPlatformApi(api_client)
+        user_guid = user_guid
+        request_body = MemberCreateRequestBody(  
+            member = MemberCreateRequest(    
+                background_aggregation_is_disabled = False,
+                credentials = [
+                    CredentialRequest(        
+                        guid = cred_guid,
+                        value = cred_value
+                    )
+                ],
+                id = id,
+                institution_code = institute_code,
+                is_oauth = False,
+                metadata = metadata,
+                skip_aggregation = False
+            ),
+            referral_source = 'APP',
+            ui_message_webview_url_scheme = 'mx'
+        )
+
+        try:
+            api_response = api_instance.create_member(user_guid, request_body)
+            pprint(api_response)
+        except mx_platform_python.ApiException as e:
+            print("Exception when calling MxPlatformApi->create_member: %s\n" % e)
+
 def list_users(configuration):
     with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
         api_instance = mx_platform_api.MxPlatformApi(api_client)
@@ -36,16 +76,6 @@ def list_users(configuration):
             pprint(api_response)
         except mx_platform_python.ApiException as e:
             print("Exception when calling MxPlatformApi->list_users: %s\n" % e)
-
-def delete_user(configuration, user_guid):
-    with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
-        api_instance = mx_platform_api.MxPlatformApi(api_client)
-
-        try:
-            api_instance.delete_user(user_guid)
-            pprint(f"{user_guid} deleted succesfully")
-        except mx_platform_python.ApiException as e:
-            print("Exception when calling MxPlatformApi->delete_user: %s\n" % e)
 
 def list_fav_institutes(configuration):
     with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
