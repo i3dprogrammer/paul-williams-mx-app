@@ -67,6 +67,15 @@ def create_member(configuration, user_guid, institute_code, id, metadata):
         except mx_platform_python.ApiException as e:
             print("Exception when calling MxPlatformApi->create_member: %s\n" % e)
 
+def delete_member(configuration, user_guid, member_guid):
+    with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
+        api_instance = mx_platform_api.MxPlatformApi(api_client)
+
+        try:
+            api_instance.delete_member(member_guid, user_guid)
+        except mx_platform_python.ApiException as e:
+            print("Exception when calling MxPlatformApi->delete_member: %s\n" % e)
+
 def list_users(configuration):
     with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
         api_instance = mx_platform_api.MxPlatformApi(api_client)

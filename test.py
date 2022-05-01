@@ -38,6 +38,8 @@ cf = actions.init(config.CLIENT_ID, config.API_KEY, config.HOST_DEV)
 #             'user_guid': 'USR-f43da74d-e24f-4a36-a1cf-96fcef718c92',
 #             'user_id': 'williamp0044'}}
 
-actions.list_accounts(cf, 'USR-f43da74d-e24f-4a36-a1cf-96fcef718c92')
-print('-----------')
+# actions.list_accounts(cf, 'USR-f43da74d-e24f-4a36-a1cf-96fcef718c92')
+# print('-----------')
 actions.list_members(cf, 'USR-f43da74d-e24f-4a36-a1cf-96fcef718c92')
+print('------')
+actions.delete_member(cf, 'USR-f43da74d-e24f-4a36-a1cf-96fcef718c92', 'MBR-65c52665-33e5-4971-8d80-5c28010db001')
