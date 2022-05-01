@@ -13,7 +13,7 @@ cf = actions.init(config.CLIENT_ID, config.API_KEY, config.HOST_DEV)
 # actions.list_members(cf, "USR-f43da74d-e24f-4a36-a1cf-96fcef718c92")
 
 # The function is only a mockup, passwords and usernames are set inside the function itself hardcoded to username, password.
-actions.create_member(cf, "USR-f43da74d-e24f-4a36-a1cf-96fcef718c92", "mxbank", "my-unique-id-test", '\"credentials_last_refreshed_at\": \"2015-10-15\"')
+actions.create_member(cf, "USR-f43da74d-e24f-4a36-a1cf-96fcef718c92", "mxbank", "test-id", '\"credentials_last_refreshed_at\": \"2016-10-15\"')
 
 # List transactions in last 24 hours.
 today = datetime.datetime.utcnow().strftime("%Y-%m-%d")
