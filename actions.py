@@ -43,12 +43,12 @@ def create_member(configuration, user_guid, institute_code, id, metadata):
                 background_aggregation_is_disabled = False,
                 credentials = [
                     CredentialRequest(        
-                        guid = "CRD-a7fc25d4-7631-44ed-bb32-3127a5b41a13",
-                        value = "username"
+                        guid = "CRD-9f61fb4c-912c-bd1e-b175-ccc7f0275cc1",
+                        value = "mxuser"
                     ),
                     CredentialRequest(        
-                        guid = "CRD-19fcbc11-d1bd-4a2a-b114-234c2508e6bb",
-                        value = "password"
+                        guid = "CRD-e3d7ea81-aac7-05e9-fbdd-4b493c6e474d",
+                        value = "test"
                     ),
                 ],
                 id = id,
