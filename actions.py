@@ -47,6 +47,45 @@ def delete_user(configuration, user_guid):
         except mx_platform_python.ApiException as e:
             print("Exception when calling MxPlatformApi->delete_user: %s\n" % e)
 
+def list_fav_institutes(configuration):
+    with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
+        api_instance = mx_platform_api.MxPlatformApi(api_client)
+        page = 1
+        records_per_page = 10
+
+        try:
+            api_response = api_instance.list_favorite_institutions(page=page, records_per_page=records_per_page)
+            pprint(api_response)
+        except mx_platform_python.ApiException as e:
+            print("Exception when calling MxPlatformApi->list_favorite_institutions: %s\n" % e)
+
+def list_institutes(configuration, query):
+    with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
+        api_instance = mx_platform_api.MxPlatformApi(api_client)
+        page = 1
+        records_per_page = 10
+        supports_account_identification = True
+        supports_account_statement = True
+        supports_account_verification = True
+        supports_transaction_history = True
+
+        try:
+            api_response = api_instance.list_institutions(name=query, page=page, records_per_page=records_per_page, supports_account_identification=supports_account_identification, supports_account_statement=supports_account_statement, supports_account_verification=supports_account_verification, supports_transaction_history=supports_transaction_history)
+            pprint(api_response)
+        except mx_platform_python.ApiException as e:
+            print("Exception when calling MxPlatformApi->list_institutions: %s\n" % e)
+
+def list_institute_required_creds(configuration, institute_code):
+    with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
+        api_instance = mx_platform_api.MxPlatformApi(api_client)
+        page = 1
+        records_per_page = 100
+
+        try:
+            api_response = api_instance.list_institution_credentials(institute_code, page=page, records_per_page=records_per_page)
+            pprint(api_response)
+        except mx_platform_python.ApiException as e:
+            print("Exception when calling MxPlatformApi->list_institution_credentials: %s\n" % e)
 
 def list_user_transactions(configuration, user_guid, from_date=None, to_date=None):
     with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
