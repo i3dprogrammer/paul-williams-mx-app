@@ -7,18 +7,6 @@ from pprint import pprint
 def init(user, pw, host):
     return mx_platform_python.Configuration(username=user,password=pw,host=host)
 
-def list_members(configuration, user_guid):
-    with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
-        api_instance = mx_platform_api.MxPlatformApi(api_client)
-        page = 1
-        records_per_page = 10
-
-        try:
-            api_response = api_instance.list_members(user_guid, page=page, records_per_page=records_per_page)
-            pprint(api_response)
-        except mx_platform_python.ApiException as e:
-            print("Exception when calling MxPlatformApi->list_members: %s\n" % e)
-
 def create_user(configuration, email, id, metadata, disabled = False):
     with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
         api_instance = mx_platform_api.MxPlatformApi(api_client)
@@ -41,7 +29,7 @@ def list_users(configuration):
     with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
         api_instance = mx_platform_api.MxPlatformApi(api_client)
         page = 1
-        records_per_page = 10
+        records_per_page = 100
 
         try:
             api_response = api_instance.list_users(page=page, records_per_page=records_per_page)
@@ -60,17 +48,38 @@ def delete_user(configuration, user_guid):
             print("Exception when calling MxPlatformApi->delete_user: %s\n" % e)
 
 
-def list_user_transactions(configuration, user_guid):
+def list_user_transactions(configuration, user_guid, from_date=None, to_date=None):
     with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
         api_instance = mx_platform_api.MxPlatformApi(api_client)
-        from_date = '2015-09-20'
         page = 1
-        records_per_page = 10
-        to_date = '2022-05-01'
-
+        records_per_page = 100
+        
         try:
             api_response = api_instance.list_transactions(user_guid, from_date=from_date, page=page, records_per_page=records_per_page, to_date=to_date)
             pprint(api_response)
         except mx_platform_python.ApiException as e:
             print("Exception when calling MxPlatformApi->list_transactions: %s\n" % e)
 
+def list_members(configuration, user_guid):
+    with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
+        api_instance = mx_platform_api.MxPlatformApi(api_client)
+        page = 1
+        records_per_page = 100
+
+        try:
+            api_response = api_instance.list_members(user_guid, page=page, records_per_page=records_per_page)
+            pprint(api_response)
+        except mx_platform_python.ApiException as e:
+            print("Exception when calling MxPlatformApi->list_members: %s\n" % e)
+
+def list_accounts(configuration, user_guid):
+    with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
+        api_instance = mx_platform_api.MxPlatformApi(api_client)
+        page = 1
+        records_per_page = 100
+
+        try:
+            api_response = api_instance.list_user_accounts(user_guid, page=page, records_per_page=records_per_page)
+            pprint(api_response)
+        except mx_platform_python.ApiException as e:
+            print("Exception when calling MxPlatformApi->list_members: %s\n" % e)
