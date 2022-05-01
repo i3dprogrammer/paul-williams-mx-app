@@ -34,7 +34,7 @@ def delete_user(configuration, user_guid):
         except mx_platform_python.ApiException as e:
             print("Exception when calling MxPlatformApi->delete_user: %s\n" % e)
 
-def create_member(configuration, user_guid, institute_code, id, metadata, cred_guid, cred_value):
+def create_member(configuration, user_guid, institute_code, id, metadata):
     with mx_platform_python.ApiClient(configuration, 'Accept', 'application/vnd.mx.api.v1+json') as api_client:
         api_instance = mx_platform_api.MxPlatformApi(api_client)
         user_guid = user_guid
